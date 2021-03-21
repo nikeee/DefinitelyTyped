@@ -88,15 +88,8 @@ declare namespace IORedis {
     type ValueType = string | Buffer | number | any[];
 
     interface OverloadedCommand<T, U> {
-        (arg1: T, arg2: T, arg3: T, arg4: T, arg5: T, arg6: T, cb: Callback<U>): void;
-        (arg1: T, arg2: T, arg3: T, arg4: T, arg5: T, cb: Callback<U>): void;
-        (arg1: T, arg2: T, arg3: T, arg4: T, cb: Callback<U>): void;
-        (arg1: T, arg2: T, arg3: T, cb: Callback<U>): void;
-        (arg1: T, arg2: T, cb: Callback<U>): void;
-        (arg1: T | T[], cb: Callback<U>): void;
-        (cb: Callback<U>): void;
-        (...args: T[]): Promise<U>;
-        (arg1: T[]): Promise<U>;
+        (...args: [...T]): Promise<U>;
+        (...args: [...T, Callback<U>]): void;
     }
 
     interface OverloadedListCommand<T, U> {
